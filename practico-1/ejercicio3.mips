@@ -1,0 +1,26 @@
+# Siendo el siguiente bucle descrito en C:
+# while (save[i] == k) i += 1;
+# Suponiendo que i y k corresponden a los registros $s3 y $s5, y la base del arreglo save
+# está en $s6. ¿Cuál es el código ensamblador MIPS correspondiente a este segmento de
+# código? 
+
+# bites memoria de datos *4
+
+# beq memoria de programa
+# lw memoria de datos 
+# registro base esta en el banco de registro
+
+inicio:
+  sll   $t0, $s3, 2        # $t0 = i * 4 (porque cada int ocupa 4 bytes)
+  add   $t1, $s6, $t0      # $t1 = dirección de save[i]
+  lw    $t2, 0($t1)        # $t2 = save[i]
+  beq   $t2, $s5, seguir    # si save[i] != k, salta a salir
+  j     fin                # sale del bucle
+
+seguir:
+  # repetir el ciclo
+  addi  $s3, $s3, 1        # i++
+  j     inicio   
+
+fin:
+  # código después del bucles
