@@ -24,3 +24,17 @@ seguir:
 
 fin:
   # código después del bucles
+
+
+  add $s3, $s6, $zero
+inicio:
+  beq   $s3, $s5, seguir    # si save[i] != k, salta a salir
+  j     fin                # sale del bucle
+
+seguir:
+  # repetir el ciclo
+  addi  $s3, $s3, 4      # i++
+  j     inicio   
+
+fin:
+  # código después del bucles
