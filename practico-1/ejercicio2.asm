@@ -4,12 +4,12 @@
 # if (i==j) f = g + h; else f = g-h 
 
 inicio:
-  beq   $s3, $s4, hacer_resta  # si $s3 == $s4, salta a hacer_resta
-  add   $s0, $s1, $s2          # si no, hace la suma
+  beq   $s3, $s4, hacer_suma  # si $s3 == $s4, salta a hacer_resta
+  sub   $s0, $s1, $s2          # resta si $s3 == $s4
   j     fin                    # salta al final
 
-hacer_resta:
-  sub   $s0, $s1, $s2          # resta si $s3 == $s4
+hacer_suma:
+  add   $s0, $s1, $s2          # si no, hace la suma
 
 fin:
   # continúa el programa
